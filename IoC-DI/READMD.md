@@ -77,6 +77,12 @@
 
 - 모든 객체의 제어 권한은 Spring Container에 있음
 
+- Bean 주입받을 수 있는 곳은 변수 생성자/set 메소드가 있음
+
+- 이름 따로 지어주고 싶으면 @Component(“빈 이름”)
+
+- @Component가 하나이면 바로 매칭됨, 두 개 이상이면 Spring에서 어떤 것을 매칭해줘야 할지 결정을 못함 -> @Qualifier(“빈 이름”) 설정
+
 <br>
 
 <hr>
@@ -140,11 +146,13 @@ class AppConfig {
 
 ```java
 // ApplicationContextProvider.java
+// Spring Container에 접근해서 객체 가져오기
 @Component
 public class ApplicationContextProvider implements ApplicationContextAware {
 
     private static ApplicationContext context;
 
+    // 주입 받아서 static 변수인 context 에 할당
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;
@@ -223,3 +231,10 @@ public class UrlEncoder implements IEncoder{
 
 }
 ```
+
+<br>
+
+<table>
+<tr><td>@Component</td><td>Spring에게 객체로 관리해달라는 annotation, 이 객체가 Bean으로 등록됨</td></tr>
+<tr><td>@Qualifier</td><td>Bean 이름 따로 등록</td></tr>
+</table>
