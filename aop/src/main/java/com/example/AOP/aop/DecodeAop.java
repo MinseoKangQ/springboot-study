@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
-@Aspect
-@Component
+@Aspect // AOP 클래스임을 명시
+@Component // Spring에서 관리됨을 명시
 public class DecodeAop {
 
     @Pointcut("execution(* com.example.AOP.controller..*.*(..))")
@@ -20,7 +20,6 @@ public class DecodeAop {
 
     @Pointcut("@annotation(com.example.AOP.annotation.Decode)")
     private void enableDecode() { }
-
 
     // 전 => Decoding 해서 내보냄
     @Before("cut() && enableDecode()")

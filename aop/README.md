@@ -85,6 +85,7 @@
     ```java
     @GetMapping("/get/{id}")
     public String get(@PathVariable Long id, @RequestParam String name) {
+        // 밑의 sout 부분을 aop로 출력할 수 있음 (외부에서 바라봄)
         System.out.println("get method");
         System.out.println("get method : " + id);
         System.out.println("get method : " + name);
@@ -108,6 +109,7 @@
     ```java
     @PostMapping("/post")
     public User post(@RequestBody User user) {
+        // 밑의 sout 부분을 aop로 출력할 수 있음 (외부에서 바라봄)
         System.out.println("post mehtod : " + user);
         return user;
     }
@@ -139,6 +141,68 @@
 
 <br>
 
+---
+
+<br>
+
+<b><u>aop 패키지에 ParameterAop 클래스 작성</u></b>
+
+```java
+package com.example.AOP.aop;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Method;
+
+@Aspect // AOP 클래스임을 명시
+@Component // Spring에서 관리됨을 명시
+public class ParameterAop {
+
+    // controller 하위의 모든 메소드에 적용
+    @Pointcut("execution(* com.example.AOP.controller..*.*(..))") // ()안에는 어디다가 적용할 지 작성
+    private void cut() {
+        // input(before)과 output(after)을 확인
+    }
+
+    @Before("cut()") // cut이 실행되는 지점의 before에 해당 메소드 실행
+    // 메소드 실행 전에 넘어가는 argument가 무엇인지 확인
+    public void before(JoinPoint joinPoint) { // JoinPoint = 들어가는 지점에 대한 정보를 가진 객체
+        // 메소드 이름 가져오기
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        System.out.println(method.getName());
+
+
+        Object [] args = joinPoint.getArgs(); // 매개변수들의 배열
+        for(Object obj : args) {
+            System.out.println("type : " + obj.getClass().getSimpleName());
+            System.out.println("value : " + obj);
+        }
+    }
+
+    @AfterReturning(value = "cut()", returning = "returnObj") // cut이 실행된 after에 해당 메소드 실행
+                                    // returning과 함수의 매개변수 이름 matching 되어야 함
+    // 리턴 이후에 반환값이 무엇인지  확인
+    public void afterReturn(JoinPoint joinPoint, Object returnObj) {
+        System.out.println("return obj");
+        System.out.println(returnObj);
+    }
+}
+
+```
+
+<br>
+
+---
+
+<br>
+
 <b><u>aop 패키지에 TimerAop 클래스 작성 (특정 메소드의 실행 시간을 출력)</b></u>
     
 ```java
@@ -152,7 +216,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 @Aspect // AOP 클래스임을 명시
-@Component // 이 클래스를 Component로 등록
+@Component // Spring에서 관리됨을 명시
 public class TimerAop {
 
     // 컨트롤러 하위의 메소드에 로깅
@@ -244,8 +308,8 @@ import org.springframework.stereotype.Component;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
-@Aspect
-@Component
+@Aspect // AOP 클래스임을 명시
+@Component // Spring에서 관리됨을 명시
 public class DecodeAop {
 
     @Pointcut("execution(* com.example.AOP.controller..*.*(..))")

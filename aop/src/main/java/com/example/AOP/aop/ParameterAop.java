@@ -10,10 +10,11 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
-@Aspect // aop로 동작함을 명시
-@Component // Spring에서 관리가 되어야 하기 때문
+@Aspect // AOP 클래스임을 명시
+@Component // Spring에서 관리됨을 명시
 public class ParameterAop {
 
+    // controller 하위의 모든 메소드에 적용함
     @Pointcut("execution(* com.example.AOP.controller..*.*(..))") // ()안에는 어디다가 적용할 지 작성
     private void cut() {
         // input(before)과 output(after)을 확인

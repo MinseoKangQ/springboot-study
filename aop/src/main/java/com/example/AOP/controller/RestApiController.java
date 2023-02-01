@@ -11,15 +11,17 @@ public class RestApiController {
 
     @GetMapping("/get/{id}")
     public String get(@PathVariable Long id, @RequestParam String name) {
-        System.out.println("get method");
-        System.out.println("get method : " + id);
-        System.out.println("get method : " + name);
+        // 밑의 sout 부분을 aop로 출력할 수 있음 (외부에서 바라봄)
+//        System.out.println("get method");
+//        System.out.println("get method : " + id);
+//        System.out.println("get method : " + name);
         return id + " " + name;
     }
 
     @PostMapping("/post")
     public User post(@RequestBody User user) {
-        System.out.println("post method : " + user);
+        // 밑의 sout 부분을 aop로 출력할 수 있음 (외부에서 바라봄)
+//        System.out.println("post method : " + user);
         return user;
     }
 

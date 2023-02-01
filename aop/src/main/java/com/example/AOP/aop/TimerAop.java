@@ -7,8 +7,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
-@Aspect
-@Component
+@Aspect // AOP 클래스임을 명시
+@Component // Spring에서 관리됨을 명시
 public class TimerAop {
 
     // 컨트롤러 하위의 메소드에
