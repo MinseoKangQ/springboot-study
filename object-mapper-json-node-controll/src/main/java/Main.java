@@ -34,17 +34,20 @@ public class Main {
 
 //        System.out.println(user);
 
+        // user를 String 타입으로 변환
         String json = objectMapper.writeValueAsString(user);
         System.out.println(json);
 
+        // String json 값을 Json 형태로 바꿔서
         JsonNode jsonNode = objectMapper.readTree(json);
+
         // 하나씩 Parsing
         String _name = jsonNode.get("name").asText(); // name이라는 field로 가져오기
         int _age = jsonNode.get("age").asInt();
         System.out.println("name : " + _name);
         System.out.println("age : " + _age);
 
-        // 배열의 node 표현 및 가져오기(구조를 알고 있는 경우)
+        // 배열 node 표현 및 가져오기(구조를 알고 있는 경우)
         JsonNode cars = jsonNode.get("cars");
         ArrayNode arrayNode = (ArrayNode)cars;
 
@@ -53,6 +56,7 @@ public class Main {
         List<Car> _cars = objectMapper.convertValue(arrayNode, new TypeReference<List<Car>>() {});
         System.out.println(_cars);
 
+        // put 메소드로 기존의 value 수정
         ObjectNode objectNode = (ObjectNode) jsonNode;
         objectNode.put("name", "steve");
         objectNode.put("age", 20);
