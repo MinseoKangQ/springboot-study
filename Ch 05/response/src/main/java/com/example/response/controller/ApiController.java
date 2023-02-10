@@ -18,12 +18,12 @@ public class ApiController {
     // 2 JSON
     @PostMapping("/json")
     public User json(@RequestBody User user) {
-        return user;
+        return user; // 200 OK
     }
 
     // 3 ResponseEntity
     @PutMapping("/put")
     public ResponseEntity<User> put(@RequestBody User user){
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user); // HttpStatus 지정 가능
     }
 }

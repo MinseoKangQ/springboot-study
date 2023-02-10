@@ -7,8 +7,8 @@
 <br>
 
 * Object Mapper : Json(Text) 형태를 Object로 바꿔줌, 혹은 그 반대
-    * Controller에서 response : Object -> Json(Text)
-    * Controller에서 request : Json(Text) -> Object
+    * Controller에서 response를 Object로 받으면 Json(Text)로 바꿔줌
+    * Controller에서 request를 Json(Text)로 받으면 Object로 바꿔줌
 
 <br>
 

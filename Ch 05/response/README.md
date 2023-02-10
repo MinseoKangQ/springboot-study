@@ -75,9 +75,9 @@
    
     * ResponseEntity에 제네릭 타입
 
-    * object mapper를 통해 Json으로 바뀜
+    * body(user) 부분 - Object Mapper를 통해 Json으로 바뀜
 
-    * 응답에 대한 Customizing 필요할 때 사용
+    * 응답에 대한 Customizing 필요할 때 ResponseEntity 사용
 
     ```java
     @PutMapping("/put")
@@ -107,7 +107,7 @@
 
     * @Controller : String 리턴하면 html 리소스를 찾고 해당 리소스를 응답으로 내려줌
 
-    * ResponseBody : Response Body를 만들어서 응답 내려줌
+    * @ResponseBody : Response Body를 만들어서 응답 내려줌
     
         * user() 메소드 동작 확인 시 Talend API에서 age = 0으로 나옴
 
@@ -115,7 +115,7 @@
 
         * null로 리턴받고 싶으면 Integer(Wrapper 타입)로 변수 선언 해야함
 
-        * 응답에 null 값 포함하지 않으려면 해당 dtd 클래스에  @JsonInclude(JsonInclude.Include.NON_NULL) 작성
+        * null 값 포함하지 않으려면 해당 dto 클래스에  @JsonInclude(JsonInclude.Include.NON_NULL) 작성
     
     <br>
     
@@ -123,7 +123,7 @@
     @RequestMapping("/main")
     public String main() {
         return "main.html";
-    }
+    } // 크롬에 http://localhost:8080/main 으로 확인 가능
 
     @ResponseBody
     @GetMapping("/user")

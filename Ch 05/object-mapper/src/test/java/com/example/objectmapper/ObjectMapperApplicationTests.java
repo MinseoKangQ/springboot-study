@@ -10,7 +10,6 @@ class ObjectMapperApplicationTests {
 
 	@Test
 	void contextLoads() throws JsonProcessingException {
-		System.out.println("-------------------");
 
 		var objectMapper = new ObjectMapper();
 
