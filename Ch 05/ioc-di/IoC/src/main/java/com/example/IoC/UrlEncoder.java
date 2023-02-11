@@ -7,7 +7,6 @@ import java.net.URLEncoder;
 
 @Component
 public class UrlEncoder implements IEncoder{
-
     @Override
     public String encode(String message) {
         try {
@@ -16,5 +15,4 @@ public class UrlEncoder implements IEncoder{
             throw new RuntimeException(e);
         }
     }
-
 }

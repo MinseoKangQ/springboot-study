@@ -20,6 +20,8 @@ public class PageController {
         var user = new User(); // 타입 추론
         user.setName("steve");
         user.setAddress("패스트 캠퍼스");
+        user.setPhoneNumber("010-1111-2222");
+        user.setAge(10);
         return user;
     }
 

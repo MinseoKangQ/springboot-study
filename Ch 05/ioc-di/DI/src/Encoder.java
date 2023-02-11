@@ -1,5 +1,3 @@
-import java.util.Base64;
-
 public class Encoder {
 
     private IEncoder iEncoder;

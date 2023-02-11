@@ -10,6 +10,7 @@ public class ApplicationContextProvider implements ApplicationContextAware {
 
     private static ApplicationContext context;
 
+    // 여기에서 Spring이 주입해줌
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;

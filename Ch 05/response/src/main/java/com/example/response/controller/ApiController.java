@@ -22,7 +22,7 @@ public class ApiController {
     }
 
     // 3 ResponseEntity
-    @PutMapping("/put")
+    @PutMapping("/response-entity")
     public ResponseEntity<User> put(@RequestBody User user){
         return ResponseEntity.status(HttpStatus.CREATED).body(user); // HttpStatus 지정 가능
     }
