@@ -32,7 +32,7 @@
 <table>
     <tr><td>Annotation</td><td>의미</td></tr>
     <tr><td>@Aspect</td><td>자바에서 널리 사용하는 AOP 프레임워크에 해당, AOP를 정의하는 Class에 할당</td></tr>
-    <tr><td>@Pointcut</td><td>기능을 어디에 적용시킬지(ex. 메소드, Annotation 등) 지점을 섯ㄹ정</td></tr>
+    <tr><td>@Pointcut</td><td>기능을 어디에 적용시킬지(ex. 메소드, Annotation 등) 지점을 설정</td></tr>
     <tr><td>@Before</td><td>메소드 실행하기 이전</td></tr>
     <tr><td>@After</td><td>메소드 성공적으로 실행 후, 예외가 발생 되어도 실행</td></tr>
     <tr><td>@AfterReturning</td><td>메소드 호출 성공 실행 시 (Not Throws)</td></tr>

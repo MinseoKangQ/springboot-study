@@ -10,7 +10,9 @@ public class AopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AopApplication.class, args);
-		System.out.println(Base64.getEncoder().encodeToString("steve@gmail.com".getBytes()));
+		System.out.println("--- main에서 실행 ---");
+		System.out.print("steve@gmail.com -> ");
+		System.out.print(Base64.getEncoder().encodeToString("steve@gmail.com".getBytes()));
 	}
 
 }

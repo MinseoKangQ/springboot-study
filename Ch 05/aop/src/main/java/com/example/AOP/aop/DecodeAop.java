@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
-@Aspect // AOP 클래스임을 명시
-@Component // Spring에서 관리됨을 명시
+@Aspect // AOP 클래스
+@Component // Spring에서 관리
 public class DecodeAop {
 
     @Pointcut("execution(* com.example.AOP.controller..*.*(..))")
@@ -21,10 +21,12 @@ public class DecodeAop {
     @Pointcut("@annotation(com.example.AOP.annotation.Decode)")
     private void enableDecode() { }
 
-    // 전 => Decoding 해서 내보냄
+    // 전 : Decoding 해서 내보냄
     @Before("cut() && enableDecode()")
     public void before(JoinPoint joinPoint) throws UnsupportedEncodingException {
-        // 내가 원하는 argument이면 됨, 특정 변수거나 객체이면 됨
+
+        System.out.println("--- DecodeAop 클래스의 before 실행 ---");
+
         Object [] args = joinPoint.getArgs();
 
         for(Object arg : args) {
@@ -33,21 +35,24 @@ public class DecodeAop {
                 String base64Email = user.getEmail(); // 기존에 Encoding된 이메일 꺼내고
                 String email = new String(Base64.getDecoder().decode(base64Email), "UTF-8"); // Decoding 하고
                 user.setEmail(email);// Decoding 된 이메일 넣어주기
-
+                System.out.println(user.getEmail());
                 // 실질적인 controller 코드에서는 User를 Decode 하는 코드가 필요 없음
             }
         }
-
     }
 
-    // 후 => Encoding 해서 내보냄
+    // 후 : Encoding 해서 내보냄
     @AfterReturning(value = "cut() && enableDecode()", returning = "returnObj")
     public void afterReturn(JoinPoint joinPoint, Object returnObj) {
+
+        System.out.println("--- DecodeAop 클래스의 afterReturn 실행 ---");
+
         if(returnObj instanceof User) {
             User user = User.class.cast(returnObj);
             String email = user.getEmail();
             String base64Email = Base64.getEncoder().encodeToString(email.getBytes());
             user.setEmail(base64Email);
+            System.out.println(user.getEmail());
         }
     }
 }
