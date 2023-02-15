@@ -1,12 +1,18 @@
-<h3>Object Mapper 실무 사례</h3>
-<h5>Object Mapper로 각각의 Json Node 자체를 컨트롤 하기</h5>
-<h5>우리가 원하는 형태로 Json 변형 가능</h5>
+<h3>01. Object Mapper 개념</h3>
 
 <br>
 
 Obejct Mapper
 - 스프링 프레임워크에서 사용하는 자바에 대한 라이브러리
 - 반드시 스프링에서 사용되는 것은 아님
+
+<br>
+
+---
+
+<br>
+
+<h3>02. 프로젝트 기본 설정</h3>
 
 <br>
 
@@ -24,7 +30,17 @@ Obejct Mapper
 
 <br>
 
+실습 내용
+- Object Mapper로 각각의 Json Node 자체를 컨트롤 하기
+- 우리가 원하는 형태로 Json 변형 가능
+
+<br>
+
 ---
+
+<br>
+
+<h3>03. Object Mapper 실무 사례</h3>
 
 <br>
 
@@ -173,11 +189,11 @@ public class Main {
         List<Car> carList = Arrays.asList(car1, car2);
         user.setCars(carList);
 
-//        System.out.println(user);
-
         // user를 String 타입으로 변환
         String json = objectMapper.writeValueAsString(user);
+        System.out.println("--- user를 String 타입으로 변환 ---");
         System.out.println(json);
+        System.out.println();
 
         // String json 값을 Json 형태로 바꿔서
         JsonNode jsonNode = objectMapper.readTree(json);
@@ -185,8 +201,10 @@ public class Main {
         // 하나씩 Parsing
         String _name = jsonNode.get("name").asText(); // name이라는 field로 가져오기
         int _age = jsonNode.get("age").asInt();
+        System.out.println("--- Json 형태로 바꾸고 하나씩 Parsing ---");
         System.out.println("name : " + _name);
         System.out.println("age : " + _age);
+        System.out.println();
 
         // 배열 node 표현 및 가져오기(구조를 알고 있는 경우)
         JsonNode cars = jsonNode.get("cars");
@@ -195,16 +213,18 @@ public class Main {
         // 원하는 타입으로 바꾸기
         // object 넣고, 우리가 원하는 타입 넣어서 Mapping
         List<Car> _cars = objectMapper.convertValue(arrayNode, new TypeReference<List<Car>>() {});
+        System.out.println("--- 배열 node 가져오기 ---");
         System.out.println(_cars);
+        System.out.println();
 
-        // JsonNode에서는 특정 Json의 값을 바꾸는 것을 막아놓음
-        // => ObjectNode로 가능함
-        // ObjectNode의 put 메소드로 기존의 value 수정
+        // put 메소드로 기존의 value 수정
         ObjectNode objectNode = (ObjectNode) jsonNode;
         objectNode.put("name", "steve");
         objectNode.put("age", 20);
 
+        System.out.println("--- ObjectNode의 put 메소드로 기존 값 수정 ---");
         System.out.println(objectNode.toPrettyString());
+        System.out.println();
     }
 }
 

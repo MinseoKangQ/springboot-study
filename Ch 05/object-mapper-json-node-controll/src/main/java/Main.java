@@ -32,11 +32,11 @@ public class Main {
         List<Car> carList = Arrays.asList(car1, car2);
         user.setCars(carList);
 
-//        System.out.println(user);
-
         // user를 String 타입으로 변환
         String json = objectMapper.writeValueAsString(user);
+        System.out.println("--- user를 String 타입으로 변환 ---");
         System.out.println(json);
+        System.out.println();
 
         // String json 값을 Json 형태로 바꿔서
         JsonNode jsonNode = objectMapper.readTree(json);
@@ -44,8 +44,10 @@ public class Main {
         // 하나씩 Parsing
         String _name = jsonNode.get("name").asText(); // name이라는 field로 가져오기
         int _age = jsonNode.get("age").asInt();
+        System.out.println("--- Json 형태로 바꾸고 하나씩 Parsing ---");
         System.out.println("name : " + _name);
         System.out.println("age : " + _age);
+        System.out.println();
 
         // 배열 node 표현 및 가져오기(구조를 알고 있는 경우)
         JsonNode cars = jsonNode.get("cars");
@@ -54,13 +56,17 @@ public class Main {
         // 원하는 타입으로 바꾸기
         // object 넣고, 우리가 원하는 타입 넣어서 Mapping
         List<Car> _cars = objectMapper.convertValue(arrayNode, new TypeReference<List<Car>>() {});
+        System.out.println("--- 배열 node 가져오기 ---");
         System.out.println(_cars);
+        System.out.println();
 
         // put 메소드로 기존의 value 수정
         ObjectNode objectNode = (ObjectNode) jsonNode;
         objectNode.put("name", "steve");
         objectNode.put("age", 20);
 
+        System.out.println("--- ObjectNode의 put 메소드로 기존 값 수정 ---");
         System.out.println(objectNode.toPrettyString());
+        System.out.println();
     }
 }
