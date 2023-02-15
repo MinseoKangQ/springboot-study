@@ -16,32 +16,29 @@ import javax.validation.Valid;
 @RequestMapping("/api")
 public class ApiController {
 
-    @PostMapping("/user") // 리소스 생성, 추가
+    @PostMapping("/user")
     public ResponseEntity user(@Valid @RequestBody User user, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) { // Error를 가지고 있다면
+
+            System.out.println("--- 에러 ---");
+
             // 무슨 Error인지 보기
             StringBuilder sb = new StringBuilder();
             bindingResult.getAllErrors().forEach(objectError -> {
                 FieldError field = (FieldError) objectError;
                 String message = objectError.getDefaultMessage();
 
-                System.out.println("field : " + field.getField());
-                System.out.println(message);
-
-                sb.append("field : " + field.getField());
-                sb.append("message : " + message);
+                sb.append("field : " + field.getField() + "\n");
+                sb.append("message : " + message + "\n");
             });
 
+            System.out.println(sb);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sb.toString());
         }
+
+        System.out.println("--- 정상 ---");
         System.out.println(user);
-
-        // 옛날 코드
-//        if(user.getAge() >= 90) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user);
-//        }
-
         return ResponseEntity.ok(user);
     }
 
