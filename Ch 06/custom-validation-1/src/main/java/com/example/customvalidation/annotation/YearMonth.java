@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Constraint(validatedBy = {YearMonthValidator.class})
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
-@Retention(RUNTIME)
+@Constraint(validatedBy = {YearMonthValidator.class}) // 검증 클래스 지정
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE }) // Java compiler 가 annotation 이 어디에 적용될지 결정
+@Retention(RUNTIME) // 어노테이션의 유지 범위(실행하는 동안)
 
 public @interface YearMonth {
 
