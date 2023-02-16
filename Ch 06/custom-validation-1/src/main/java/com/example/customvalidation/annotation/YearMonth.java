@@ -1,13 +1,10 @@
 package com.example.customvalidation.annotation;
 
 import com.example.customvalidation.validator.YearMonthValidator;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
@@ -24,6 +21,5 @@ public @interface YearMonth {
     Class<? extends Payload>[] payload() default { };
 
     String pattern() default "yyyyMMdd";
-
 
 }
