@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 @RestController
@@ -32,7 +31,7 @@ public class ApiController {
     @ExceptionHandler(value = MethodArgumentNotValidException.class) // 특정 메소드의 예외 잡아서 예외 처리
     public ResponseEntity methodArgumentNotValidException(MethodArgumentNotValidException e) {
         // Response의 Body에 메세지 넘겨줌
-        System.out.println("api controller에서 동작");
+        System.out.println("--- ApiController 클래스에서 동작 ---");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
