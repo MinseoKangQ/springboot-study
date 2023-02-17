@@ -1,3 +1,93 @@
+<h3>01. 실습 내용 및 프로젝트 구조</h3>
+
+<br>
+
+실습 내용
+- response가 Client 입장에서는 친절하지 않았음
+- global exception + Spring validation으로 <b>Client</b>에게 알려주는 실습 진행
+
+<br>
+
+validation 사용을 위해 build.gradle dependencies에 다음 코드 추가
+
+```java
+implementation 'org.springframework.boot:spring-boot-starter-validation
+```
+
+<br>
+
+프로젝트 구조
+
+<br>
+
+---
+
+<br>
+
+<h3>02. ApiController 클래스 작성</h3>
+
+<br>
+
+- @Validated를 컨트롤러 단위에 작성 - 검증 작업을 위해서
+- @RequestParam에 @Size, @NotNull 작성해주면 매개변수에 대해서도 validation 가능
+
+
+```java
+package com.example.exceptionandvalidation.controller;
+
+import com.example.exceptionandvalidation.dto.User;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@RestController
+@RequestMapping("/api/user")
+@Validated
+public class ApiController {
+
+    @GetMapping("")
+    public User get(
+            @Size(min = 2)
+            @RequestParam String name,
+
+            @NotNull
+            @Min(1)
+            @RequestParam Integer age) {
+        User user = new User();
+        user.setName(name);
+        user.setAge(age);
+
+        int a = 10 + age; // 예외 발생
+
+        return user;
+    }
+
+    @PostMapping("")
+    public User post(@Valid @RequestBody User user) {
+        System.out.println(user);
+        return user;
+    }
+
+}
+```
+
+<br>
+
+---
+
+<br>
+
+<h3>03. ApiControllerAdvice 클래스 작성</h3>
+
+<br>
+
+- @RestControllerAdvice에 basePackageClasses 값 작성하여 ApiController에 대해서만 동작하도록 함
+- HttpServletRequest에서 getRequestURI()로 요청 주소 받기
+
+```java
 package com.example.exceptionandvalidation.advice;
 
 import com.example.exceptionandvalidation.controller.ApiController;
@@ -122,3 +212,192 @@ public class ApiControllerAdvice {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 }
+```
+
+<br>
+
+---
+
+<br>
+
+<h3>04. User, Error, ErrorResponse 클래스 작성</h3>
+
+<br>
+
+```java
+package com.example.exceptionandvalidation.dto;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class User {
+
+    @NotEmpty
+    @Size(min = 1, max = 10)
+    private String name;
+
+    @Min(1)
+    @NotNull
+    private Integer age;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+```
+
+```java
+package com.example.exceptionandvalidation.dto;
+
+public class Error {
+
+    private String field;
+    private String message;
+    private String invalidValue;
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getInvalidValue() {
+        return invalidValue;
+    }
+
+    public void setInvalidValue(String invalidValue) {
+        this.invalidValue = invalidValue;
+    }
+}
+
+```
+
+```java
+package com.example.exceptionandvalidation.dto;
+
+import java.util.List;
+
+public class ErrorResponse {
+
+    private String message;
+    private String resultCode;
+
+    private List<Error> errorList;
+    private String statusCode;
+    private String requestUrl;
+    private String code;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getResultCode() {
+        return resultCode;
+    }
+
+    public void setResultCode(String resultCode) {
+        this.resultCode = resultCode;
+    }
+
+    public List<Error> getErrorList() {
+        return errorList;
+    }
+
+    public void setErrorList(List<Error> errorList) {
+        this.errorList = errorList;
+    }
+
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public String getRequestUrl() {
+        return requestUrl;
+    }
+
+    public void setRequestUrl(String requestUrl) {
+        this.requestUrl = requestUrl;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+}
+```
+
+<br>
+
+---
+
+<br>
+
+<h3>05. 실행 결과 및 정리</h3>
+
+<br>
+
+실행 결과
+
+- get 메소드
+
+
+<br>
+
+- post 메소드
+
+<br>
+
+정리
+
+<table>
+    <tr><td>@Valid</td><td>컨트롤러(핸들러)에서만 동작</td></tr>
+    <tr><td>@Validated</td><td>컨트롤러 계층이 아닌 다른 계층에서도 유효성 검사</td></tr>
+    <tr><td>@RequestParam의 변수</td><td>validation 검증을 위한 annotation 사용 가능</td></tr>
+    <tr><td>@RestControllerAdvice</td><td>basePackageClasses 작성으로 특정 클래스에 대해서만 동작</td></tr>
+    <tr><td>HttpServletRequest 객체</td><td>getRequestURI() 메소드로 요청 주소를 가져올 수 있음</td></tr>
+
+
+</table>

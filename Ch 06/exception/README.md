@@ -20,6 +20,7 @@ Client에게 오류를 보여주지는 않음을 해결해주기 위함
 <br>
 
 validation 사용을 위해 build.gradle dependencies에 다음 코드 추가
+
 ```java
 implementation 'org.springframework.boot:spring-boot-starter-validation
 ```
