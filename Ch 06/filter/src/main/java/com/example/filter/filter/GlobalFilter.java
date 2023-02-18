@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Base64;
 
 @Slf4j
 //@Component
@@ -43,4 +44,5 @@ public class GlobalFilter implements Filter {
 
         log.info("response status : {}, responseBody : {}", httpStatus, resContent);
     }
+
 }
