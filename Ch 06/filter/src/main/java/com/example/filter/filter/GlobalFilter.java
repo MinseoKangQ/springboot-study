@@ -9,12 +9,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Base64;
 
 @Slf4j
-//@Component
 @WebFilter(urlPatterns = "/api/user/*")
 public class GlobalFilter implements Filter {
 
