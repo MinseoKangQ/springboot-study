@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-@ServletComponentScan
+@ServletComponentScan // 특정 Filter를 걸기 위한 Annotation
 public class FilterApplication {
 
 	public static void main(String[] args) {

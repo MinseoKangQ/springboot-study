@@ -1,7 +1,6 @@
 package com.example.filter.filter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-@WebFilter(urlPatterns = "/api/user/*")
+@WebFilter(urlPatterns = "/api/user/*") // 특정 Filter를 걸기 위한 Annotation
 public class GlobalFilter implements Filter {
 
     @Override
@@ -26,19 +25,19 @@ public class GlobalFilter implements Filter {
         // 실행
         chain.doFilter(httpServletRequest, httpServletResponse);
 
-        String url = httpServletRequest.getRequestURI(); // 어떤 주소로 가져왔는지
+        // 어떤 주소로 가져왔는지
+        String url = httpServletRequest.getRequestURI();
 
         // 후처리 구간
         // 응답 받기
         String reqContent = new String(httpServletRequest.getContentAsByteArray());
-        log.info("request url : {}, requestBody : {}", url, reqContent);
-
         String resContent = new String(httpServletResponse.getContentAsByteArray());
         int httpStatus = httpServletResponse.getStatus();
 
         // 위에서 내용을 빼가기 때문에 이 메소드 호출하여 Client가 제대로 된 응답을 받을 수 있도록 함
         httpServletResponse.copyBodyToResponse();
 
+        log.info("request url : {}, requestBody : {}", url, reqContent);
         log.info("response status : {}, responseBody : {}", httpStatus, resContent);
     }
 
