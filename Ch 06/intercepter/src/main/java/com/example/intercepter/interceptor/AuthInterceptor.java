@@ -8,7 +8,6 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
@@ -17,9 +16,9 @@ import java.net.URI;
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
 
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         String url = request.getRequestURI();
 
         URI uri = UriComponentsBuilder.fromUriString(request.getRequestURI())
@@ -41,16 +40,15 @@ public class AuthInterceptor implements HandlerInterceptor {
             if(query.equals("name=steve")){
                 return true;
             }
-            throw new AuthException();
+            throw new AuthException(); // 예외 처리
         }
-        return true;
-        // false이면 이후 Controller까지 못감
+        return true; // false이면 이후 Controller까지 못감
     }
 
-    // annotation이 달려있는지 확인
+    // annotation의 존재 여부 확인
     private boolean checkAnnotation(Object handler, Class clazz) {
 
-        // resource javascript, html 등에 대한 것이면 통과시키기
+        // javascript, html 등 리소스에 대한 것이면 통과시키기
         if(handler instanceof ResourceHttpRequestHandler) {
             return true;
         }
