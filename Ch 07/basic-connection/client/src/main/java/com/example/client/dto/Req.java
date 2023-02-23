@@ -5,14 +5,10 @@ public class Req<T> {
     private Header header;
 
     private T resBody;
-    public static class Header {
-        @Override
-        public String toString() {
-            return "Header{" +
-                    "responseCode='" + responseCode + '\'' +
-                    '}';
-        }
 
+    public static class Header {
+
+        private String responseCode;
         public String getResponseCode() {
             return responseCode;
         }
@@ -21,15 +17,12 @@ public class Req<T> {
             this.responseCode = responseCode;
         }
 
-        private String responseCode;
-    }
-
-    @Override
-    public String toString() {
-        return "Req{" +
-                "header=" + header +
-                ", body=" + resBody +
-                '}';
+        @Override
+        public String toString() {
+            return "Header{" +
+                    "responseCode='" + responseCode + '\'' +
+                    '}';
+        }
     }
 
     public Header getHeader() {
@@ -46,5 +39,13 @@ public class Req<T> {
 
     public void setResBody(T resBody) {
         this.resBody = resBody;
+    }
+
+    @Override
+    public String toString() {
+        return "Req{" +
+                "header=" + header +
+                ", body=" + resBody +
+                '}';
     }
 }

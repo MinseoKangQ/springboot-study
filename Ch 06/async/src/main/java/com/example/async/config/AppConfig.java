@@ -16,7 +16,7 @@ public class AppConfig {
         threadPoolTaskExecutor.setMaxPoolSize(100);
         threadPoolTaskExecutor.setCorePoolSize(10);
         threadPoolTaskExecutor.setQueueCapacity(10);
-        threadPoolTaskExecutor.setThreadNamePrefix("Async~");
+        threadPoolTaskExecutor.setThreadNamePrefix("Async~"); // 우리가 지정한 Thread 이름
         return threadPoolTaskExecutor;
     }
 }

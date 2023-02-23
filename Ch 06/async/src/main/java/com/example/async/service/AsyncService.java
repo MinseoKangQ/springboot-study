@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 public class AsyncService {
 
 
-    @Async("async-thread")
+    @Async("async-thread") // 풀 지정
     public CompletableFuture run() {
         return new AsyncResult(hello()).completable();
     }
