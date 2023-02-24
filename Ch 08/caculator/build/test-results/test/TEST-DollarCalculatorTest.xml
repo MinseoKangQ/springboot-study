@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="DollarCalculatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-24T01:04:07" hostname="Kangminseo.local" time="0.013">
+  <properties/>
+  <testcase name="test()" classname="DollarCalculatorTest" time="0.013"/>
+  <system-out><![CDATA[22000
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
