@@ -659,3 +659,18 @@ public class User {
 <br>
 
 <h3>04. 정리</h3>
+
+<br>
+
+dto 클래스 구조
+- Json Header는 고정
+- Body는 들어가는 타입이 계속 바뀌므로 Generic 타임
+
+<br>
+
+<table>
+    <tr><td>Client</td><td>Server</td></tr>
+    <tr><td>URI에 path 지정</td><td>@PathVariable 데이터 타입</td></tr>
+    <tr><td>전송할 데이터 UserRequest</td><td>@RequestBody User</td></tr>
+    <tr><td>RequestEntity에 header 지정</td><td>@RequestHeader String</td></tr>
+</table>

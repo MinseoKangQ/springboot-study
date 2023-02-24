@@ -14,33 +14,41 @@ public class DollarCalculatorTest {
 
     @BeforeEach
     public void init() {
+        System.out.println("--- init() ---");
         Mockito.lenient().when(marketApi.connect()).thenReturn(3000);
     }
 
     @Test
     public void testHello() {
+        System.out.println("--- testHello() ---");
         System.out.println("hello");
+        System.out.println();
     }
 
     @Test
     public void test() {
+        System.out.println("--- test() ---");
         MarketApi marketApi = new MarketApi();
         DollarCalculator dollarCalculator = new DollarCalculator(marketApi);
         dollarCalculator.init();
-
         Calculator calculator = new Calculator(dollarCalculator);
-        System.out.println(calculator.sum(10, 10));
 
         Assertions.assertEquals(22000, calculator.sum(10,10));
+
+        System.out.println(calculator.sum(10, 10));
+        System.out.println();
     }
 
     @Test
     public void mockTest() {
+        System.out.println("--- mockTest() ---");
         DollarCalculator dollarCalculator = new DollarCalculator(marketApi);
         dollarCalculator.init();
-
         Calculator calculator = new Calculator(dollarCalculator);
 
         Assertions.assertEquals(60000, calculator.sum(10,10));
+
+        System.out.println(calculator.sum(10, 10));
+        System.out.println();
     }
 }
