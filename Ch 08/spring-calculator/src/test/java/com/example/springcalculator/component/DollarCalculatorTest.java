@@ -27,4 +27,5 @@ public class DollarCalculatorTest {
         Assertions.assertEquals(60000, sum);
         Assertions.assertEquals(0, minus);
     }
+
 }

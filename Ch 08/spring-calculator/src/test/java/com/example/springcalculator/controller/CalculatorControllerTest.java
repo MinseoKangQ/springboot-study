@@ -36,22 +36,35 @@ public class CalculatorControllerTest {
     }
 
     @Test
-    public void sumTest() throws Exception {
+    public void sumGetTest() throws Exception {
         // http://localhost:8080/api/sum
-
-        mockMvc.perform(
+        mockMvc.perform( // URI 만들고 Request
                 MockMvcRequestBuilders.get("http://localhost:8080/api/sum") // get 메소드 test
                         .queryParam("x", "10")
                         .queryParam("y", "10")
-        ).andExpect(
+        ).andExpect( // 기댓값
                 MockMvcResultMatchers.status().isOk()
-        ).andExpect(
+        ).andExpect( // 기댓값
                 MockMvcResultMatchers.content().string("60000")
-        ).andDo(MockMvcResultHandlers.print());
+        ).andDo(MockMvcResultHandlers.print()); // MvcResult를 세부 정보를 표준 형식으로 출력
     }
 
     @Test
-    public void minusTest() throws Exception {
+    public void minusGetTest() throws Exception {
+        // http://localhost:8080/api/minus
+        mockMvc.perform( // URI 만들고 Request
+                MockMvcRequestBuilders.get("http://localhost:8080/api/minus") // get 메소드 test
+                        .queryParam("x", "10")
+                        .queryParam("y", "10")
+        ).andExpect( // 기댓값
+                MockMvcResultMatchers.status().isOk()
+        ).andExpect( // 기댓값
+                MockMvcResultMatchers.content().string("0")
+        ).andDo(MockMvcResultHandlers.print()); // MvcResult를 세부 정보를 표준 형식으로 출력
+    }
+
+    @Test
+    public void minusPostTest() throws Exception {
 
         // 요청을 보내기 위한 객체 생성
         Req req = new Req();
@@ -61,17 +74,17 @@ public class CalculatorControllerTest {
         // ObjectMapper 객체를 사용해 RequestBody 부분 String으로 바꿔서 json 형태로
         String json = new ObjectMapper().writeValueAsString(req);
 
-        mockMvc.perform(
+        mockMvc.perform( // URI 만들고 Request
                 MockMvcRequestBuilders.post("http://localhost:8080/api/minus") // post 메소드 test
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json) // RequestBody
-        ).andExpect(
+        ).andExpect( // 기댓값
                 MockMvcResultMatchers.status().isOk()
-        ).andExpect(
+        ).andExpect( // 기댓값
                 MockMvcResultMatchers.jsonPath("$.result").value("0")
-        ).andExpect(
+        ).andExpect( // 기댓값
                 MockMvcResultMatchers.jsonPath("$.response.resultCode").value("OK")
         )
-        .andDo(MockMvcResultHandlers.print());
+        .andDo(MockMvcResultHandlers.print()); // MvcResult를 세부 정보를 표준 형식으로 출력
     }
 }

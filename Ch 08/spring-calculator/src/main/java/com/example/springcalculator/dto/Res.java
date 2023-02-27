@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class Res {
 
     private int result;
-
     private Body response;
 
     @Data
