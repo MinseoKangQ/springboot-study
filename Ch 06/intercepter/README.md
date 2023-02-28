@@ -177,11 +177,17 @@ public @interface Auth {
 
 - @Component : 스프링에서 관리되어야 함
 
-- preHandle 메소드 오버라이딩 : 권한 확인
+- preHandle 메소드 오버라이딩
+  
+  - 권한 확인
 
-- handler : 여러 정보들 가지고 있음
+  - 컨트롤러에 진입하기 전에 실행됨
 
-- interceptor에서 return false이면 controller로 넘어갈 수 없기 때문에 return true
+  - 반환값이 true이면 controller로 진입
+
+  - 반환값이 false이면 controller로 진입하지 않음
+
+  - Object handler : 진입하려는 컨트롤러의 클래스 객체
 
 - checkAnnotation 메소드
 
