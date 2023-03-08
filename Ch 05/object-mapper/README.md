@@ -35,7 +35,7 @@ System.out.println(text);
 
 2) Json(Text) -> Object
 
-- Dto 클래스에 <b><u>디폴트 생성자</u></b> 있어야 함
+- Dto 클래스에 디폴트 생성자 있어야 함
 - objectMapper.readValue(Json(Text), 어떤 클래스 타입으로 바꿀 것인지)
     
 ```java
