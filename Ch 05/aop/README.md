@@ -5,7 +5,7 @@
 - 관점 지향 프로그래밍
     - Spring Application은 대부분 MVC
     - 웹 어플리케이션에서는 Web Layer / Business Layer /  Data Layer
-    - <b><u>AOP는 메소드나 특정 구역에서 반복되는 로직들을 한곳에 몰아서 코딩할 수 있도록 함</u></b>
+    - AOP는 메소드나 특정 구역에서 반복되는 로직들을 한곳에 몰아서 코딩할 수 있도록 함
 
 <br>  
 
