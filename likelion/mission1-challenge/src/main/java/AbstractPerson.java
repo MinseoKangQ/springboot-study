@@ -13,6 +13,14 @@ public abstract class AbstractPerson implements Person {
         System.out.println("My age is " + this.age);
     }
 
+    @Override
+    public String toString() {
+        return "AbstractPerson{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

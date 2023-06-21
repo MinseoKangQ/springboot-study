@@ -1,13 +1,22 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
+        Person studentKim = new Student("Kim", 26);
+        Person studentLee = new Student("Lee", 28);
+        Person studentPark = new Student("Park", 24);
 
-        AbstractPerson st = new Student("kang", 13);
-        System.out.println("--- st info ---");
-        System.out.println(st);
+        Person lecturer = new Lecturer("Kkk", 30);
 
-        AbstractPerson lec = new Lecturer("kim", 20);
-        System.out.println("--- lec info ---");
-        System.out.println(lec);
+        List<Person> everyone = new ArrayList<>();
+        everyone.add(studentKim);
+        everyone.add(studentLee);
+        everyone.add(studentPark);
+
+        for(Person person : everyone) {
+            person.speak();
+        }
     }
 }
