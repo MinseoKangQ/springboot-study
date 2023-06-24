@@ -6,10 +6,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 public class PostDao {
     private final SqlSessionFactory sessionFactory;
 
@@ -19,15 +20,15 @@ public class PostDao {
 
     // C
     public int createPost(PostDto dto) {
-        /* 작성방법 1
+        // 작성방법 1
         // 데이터베이스와 통신을 하기 위해 세션 열어야 함
-        SqlSession session = sessionFactory.openSession();
+        // SqlSession session = sessionFactory.openSession();
         // PostMapper 를 구현한 구현체가 주입됨
-        PostMapper mapper = session.getMapper(PostMapper.class);
-        int rowAffected = mapper.createPost(dto); // 데이터베이스와 통신 완료되는 부분
-        session.close(); // 통신 끝나면 세션 낭비하지 않기 위해 세션 닫아야 함
-        return rowAffected;
-         */
+        // PostMapper mapper = session.getMapper(PostMapper.class);
+        // int rowAffected = mapper.createPost(dto); // 데이터베이스와 통신 완료되는 부분
+        // session.close(); // 통신 끝나면 세션 낭비하지 않기 위해 세션 닫아야 함
+        // return rowAffected;
+
         // 작성방법 2 (try-resource)
         try (SqlSession session = sessionFactory.openSession()) {
             PostMapper mapper = session.getMapper(PostMapper.class);

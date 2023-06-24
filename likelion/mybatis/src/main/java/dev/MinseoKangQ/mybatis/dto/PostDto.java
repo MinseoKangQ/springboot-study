@@ -8,10 +8,6 @@ writer varchar
 board int
 */
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-
 public class PostDto {
     private int id;
     private String title;
