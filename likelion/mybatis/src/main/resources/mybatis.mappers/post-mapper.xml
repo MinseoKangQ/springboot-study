@@ -9,6 +9,15 @@
         values (#{title}, #{content}, #{writer}, ${board})
         <!-- #{title} == 'title', ${title} == title -->
     </insert>
+    <insert id="createPostAll"
+            parameterType="dev.MinseoKangQ.mybatis.dto.PostDto">
+        insert into POST(title, content, writer, board)
+        values
+        <!-- 반복시킬 내용 -->
+        <foreach collection="list" item="item" separator=",">
+            (#{item.title}, #{item.content}, #{item.writer}, ${item.board})
+        </foreach>
+    </insert>
 
     <!-- R -->
     <select id="readPost" parameterType="int" resultType="dev.MinseoKangQ.mybatis.dto.PostDto">
@@ -19,7 +28,18 @@
         <!-- 모든 것 보여주기 -->
         select * from post
     </select>
-
+    <select
+            id="readPostQuery"
+            parameterType="dev.MinseoKangQ.mybatis.dto.PostDto"
+            resultType="dev.MinseoKangQ.mybatis.dto.PostDto">
+        select * from post
+        where title = #{title}
+        <!-- null 에 대한 처리 -->
+        <if test="writer != null">
+            and writer = #{writer}
+        </if>
+    </select>
+    
     <!-- U -->
     <update id="updatePost" parameterType="dev.MinseoKangQ.mybatis.dto.PostDto">
         update post
