@@ -3,7 +3,7 @@ package dev.MinseoKangQ.jpa.entity;
 import javax.persistence.*;
 
 @Entity
-public class PostEntity {
+public class PostEntity extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
