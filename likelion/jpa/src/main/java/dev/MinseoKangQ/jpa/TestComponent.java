@@ -25,5 +25,7 @@ public class TestComponent {
         postEntity.setWriter("MinseoKangQ");
         postEntity.setBoardEntity(newBoardEntity);
         PostEntity newPostEntity = postRepository.save(postEntity);
+
+        System.out.println(postRepository.findAllByWriter("MinseoKangQ").size());
     }
 }
