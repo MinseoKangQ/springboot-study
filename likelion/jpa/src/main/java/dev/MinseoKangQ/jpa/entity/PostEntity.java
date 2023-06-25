@@ -3,6 +3,7 @@ package dev.MinseoKangQ.jpa.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "post")
 public class PostEntity extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +16,7 @@ public class PostEntity extends BaseEntity{
             targetEntity = BoardEntity.class,
             fetch = FetchType.LAZY
     )
+    @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
 
     public PostEntity() {

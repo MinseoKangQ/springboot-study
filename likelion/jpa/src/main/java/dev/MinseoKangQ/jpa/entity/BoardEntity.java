@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "board")
 public class BoardEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "board_name")
     private String name;
 
     @OneToMany(
