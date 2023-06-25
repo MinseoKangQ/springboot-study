@@ -1,4 +1,7 @@
 package dev.MinseoKangQ.jpa.repository;
 
-public interface PostRepository {
+import dev.MinseoKangQ.jpa.entity.PostEntity;
+import org.springframework.data.repository.CrudRepository;
+
+public interface PostRepository extends CrudRepository<PostEntity, Long> {
 }

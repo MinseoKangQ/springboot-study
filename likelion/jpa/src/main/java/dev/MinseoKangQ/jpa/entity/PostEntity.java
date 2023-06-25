@@ -60,4 +60,23 @@ public class PostEntity {
     public void setWriter(String writer) {
         this.writer = writer;
     }
+
+    public BoardEntity getBoardEntity() {
+        return boardEntity;
+    }
+
+    public void setBoardEntity(BoardEntity boardEntity) {
+        this.boardEntity = boardEntity;
+    }
+
+    @Override
+    public String toString() {
+        return "PostEntity{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", writer='" + writer + '\'' +
+                ", boardEntity=" + boardEntity +
+                '}';
+    }
 }
