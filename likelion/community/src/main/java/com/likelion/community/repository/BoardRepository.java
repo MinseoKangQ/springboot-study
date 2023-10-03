@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
-@Repository
 public interface BoardRepository {
     BoardDto create(BoardDto dto);
     BoardDto read(Long id);
