@@ -1,5 +1,6 @@
 package dev.MinseoKangQ.jpa;
 
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,9 @@ public class PostController {
 
     private static final Logger logger = LoggerFactory.getLogger(PostController.class);
     private final PostService postService;
-
-    public PostController(@Autowired PostService postService) {
+    public PostController(@Autowired PostService postService, @Autowired Gson gson) {
         this.postService = postService;
+        logger.info(gson.toString());
     }
 
     @PostMapping()
