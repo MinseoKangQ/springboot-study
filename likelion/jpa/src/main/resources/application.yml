@@ -5,7 +5,7 @@ spring:
 logging:
   level:
     root: warn
-    dev.MinseoKangQ: info
+    dev.MinseoKangQ: warn
 
 custom:
   property:

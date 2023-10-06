@@ -1,6 +1,9 @@
 package dev.MinseoKangQ.jpa;
 
 import com.google.gson.Gson;
+import dev.MinseoKangQ.jpa.aspect.LogExecutionTime;
+import dev.MinseoKangQ.jpa.aspect.LogArguments;
+import dev.MinseoKangQ.jpa.aspect.LogReturn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +22,20 @@ public class PostController {
         logger.info(gson.toString());
     }
 
+    @LogArguments
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public void createPost(@RequestBody PostDto postDto) {
         this.postService.createPost(postDto);
     }
 
+    @LogReturn
     @GetMapping("{id}")
     public PostDto readPost(@PathVariable("id") int id) {
         return this.postService.readPost(id);
     }
 
+    @LogExecutionTime
     @GetMapping("")
     public List<PostDto> readPostAll() {
         return this.postService.readPostAll();
