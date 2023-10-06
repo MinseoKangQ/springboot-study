@@ -1,0 +1,2 @@
+2023-10-06 10:55:59,589 INFO org.springframework.boot.StartupInfoLogger [main] Starting JpaApplication using Java 11.0.17 on Kangminseo.local with PID 6031 (/Users/kangminseo/Documents/GitHub_Project/spring-study/likelion/jpa/build/classes/java/main started by kangminseo in /Users/kangminseo/Documents/GitHub_Project/spring-study/likelion/jpa)
+2023-10-06 10:55:59,591 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "test"

@@ -2,6 +2,11 @@ spring:
   profiles:
     active: test
 
+logging:
+  level:
+    root: warn
+    dev.MinseoKangQ: info
+
 custom:
   property:
     single: custom-property

@@ -47,4 +47,13 @@ public class PostController {
         this.postService.deletePost(id);
     }
 
+    @GetMapping("test-log")
+    public void testLong() {
+        logger.trace("TRACE Log Message");
+        logger.debug("DEBUG Log Message");
+        logger.info("INFO Log Message");
+        logger.warn("WARN Log Message");
+        logger.error("ERROR Log Message");
+    }
+
 }
