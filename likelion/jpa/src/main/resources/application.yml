@@ -1,11 +1,11 @@
 spring:
   profiles:
-    active: test
+    active: local
 
-logging:
-  level:
-    root: warn
-    dev.MinseoKangQ: warn
+#logging:
+#  level:
+#    root: warn
+#    dev.MinseoKangQ: warn
 
 custom:
   property:
