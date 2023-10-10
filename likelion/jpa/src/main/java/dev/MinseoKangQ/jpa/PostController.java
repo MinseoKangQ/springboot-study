@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import dev.MinseoKangQ.jpa.aspect.LogExecutionTime;
 import dev.MinseoKangQ.jpa.aspect.LogArguments;
 import dev.MinseoKangQ.jpa.aspect.LogReturn;
+import dev.MinseoKangQ.jpa.exception.PostNotExistException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,11 @@ public class PostController {
     @PostMapping("test-valid")
     public void testValid(@Valid @RequestBody ValidTestDto dto) {
         logger.warn(dto.toString());
+    }
+
+    @GetMapping("test-exception")
+    public void throwException() {
+        throw new PostNotExistException();
     }
 
 }

@@ -2,6 +2,9 @@ spring:
   profiles:
     active: local
 
+logging:
+  level:
+    dev.MinseoKangQ.jpa.handler: debug
 #logging:
 #  level:
 #    root: warn
