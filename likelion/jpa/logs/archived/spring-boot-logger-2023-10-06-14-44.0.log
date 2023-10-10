@@ -1,4 +1,0 @@
-2023-10-06 14:44:01,989 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-1] method description: [public void dev.MinseoKangQ.jpa.PostController.createPost(dev.MinseoKangQ.jpa.PostDto)]
-2023-10-06 14:44:01,991 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-1] method name: [createPost]
-2023-10-06 14:44:01,992 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-1] declaring class: [class dev.MinseoKangQ.jpa.PostController]
-2023-10-06 14:44:01,992 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-1] argument: [PostDto{id=0, title='제목', content='내용', writer='글쓴이', boardId=0}]

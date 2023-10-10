@@ -1,9 +1,0 @@
-2023-10-06 15:24:05,410 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-10-06 15:24:17,209 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-2] method description: [public void dev.MinseoKangQ.jpa.PostController.createPost(dev.MinseoKangQ.jpa.PostDto)]
-2023-10-06 15:24:17,210 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-2] method name: [createPost]
-2023-10-06 15:24:17,211 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-2] declaring class: [class dev.MinseoKangQ.jpa.PostController]
-2023-10-06 15:24:17,211 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-2] argument: [PostDto{id=0, title='제목', content='내용', writer='글쓴이', boardId=0}]
-2023-10-06 15:24:22,294 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-3] method executed in 69
-2023-10-06 15:24:43,352 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-4] method name: [readPost]
-2023-10-06 15:24:43,353 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-4] return type: [class dev.MinseoKangQ.jpa.PostDto]
-2023-10-06 15:24:43,353 TRACE dev.MinseoKangQ.jpa.aspect.LoggingAspect [http-nio-8080-exec-4] return value: [PostDto{id=1, title='제목', content='내용', writer='글쓴이', boardId=0}]
