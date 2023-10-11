@@ -2,21 +2,23 @@ spring:
   profiles:
     active: local
 
-logging:
-  level:
-    dev.MinseoKangQ.jpa.handler: debug
+### filter test
 #logging:
 #  level:
-#    root: warn
-#    dev.MinseoKangQ: warn
+#    dev.MinseoKangQ.jpa.filter: debug
 
-custom:
-  property:
-    single: custom-property
-    comlist: comma,sparated,list,to,value
-    ncp:
-      id: api-id
-      key: api-key
-      url: https://ncp.com/
+### interceptor test
+logging:
+  level:
+    dev.MinseoKangQ.jpa.interceptor: trace
+
+#custom:
+#  property:
+#    single: custom-property
+#    comlist: comma,sparated,list,to,value
+#    ncp:
+#      id: api-id
+#      key: api-key
+#      url: https://ncp.com/
 #custom.property.single
 #custom.property.comlist
