@@ -30,6 +30,13 @@ public class PostDto {
         this.boardId = boardId;
     }
 
+    public PostDto(int toIntExact, String title, String content, String writer) {
+        this.id = toIntExact;
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+    }
+
     public int getId() {
         return id;
     }
