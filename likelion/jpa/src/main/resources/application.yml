@@ -2,23 +2,22 @@ spring:
   profiles:
     active: local
 
-### filter test
-#logging:
-#  level:
-#    dev.MinseoKangQ.jpa.filter: debug
-
-### interceptor test
-logging:
-  level:
-    dev.MinseoKangQ.jpa.interceptor: trace
-
-#custom:
-#  property:
-#    single: custom-property
-#    comlist: comma,sparated,list,to,value
-#    ncp:
-#      id: api-id
-#      key: api-key
-#      url: https://ncp.com/
-#custom.property.single
-#custom.property.comlist
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health, info, loggers, shutdown, prometheus
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+      show-components: always
+    info:
+      enabled: true
+    loggers:
+      enabled: true
+    shutdown:
+      enabled: true
+    prometheus:
+      enabled: true
