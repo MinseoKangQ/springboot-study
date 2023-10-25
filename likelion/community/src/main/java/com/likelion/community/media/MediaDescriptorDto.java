@@ -1,4 +1,4 @@
-package com.likelion.community.model;
+package com.likelion.community.media;
 
 public class MediaDescriptorDto {
     private Integer status;

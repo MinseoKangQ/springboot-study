@@ -1,14 +1,7 @@
 package com.likelion.community.repository;
 
-import com.likelion.community.model.BoardDto;
-import org.springframework.stereotype.Repository;
+import com.likelion.community.jpa.entity.BoardEntity;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.Collection;
-
-public interface BoardRepository {
-    BoardDto create(BoardDto dto);
-    BoardDto read(Long id);
-    Collection<BoardDto> readAll();
-    boolean update(Long id, BoardDto dto);
-    boolean delete(Long id);
+public interface BoardRepository extends CrudRepository<BoardEntity, Long> {
 }

@@ -1,6 +1,5 @@
-package com.likelion.community.service;
+package com.likelion.community.media;
 
-import com.likelion.community.model.MediaDescriptorDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;

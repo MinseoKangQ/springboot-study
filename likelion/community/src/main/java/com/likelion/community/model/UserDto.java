@@ -7,9 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PostDto {
+public class UserDto {
     private Long id;
-    private String title;
-    private String content;
-    private Long userId;
+    private String username;
+    private String password;
 }

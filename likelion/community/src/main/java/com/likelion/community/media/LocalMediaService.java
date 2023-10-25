@@ -1,6 +1,5 @@
-package com.likelion.community.service;
+package com.likelion.community.media;
 
-import com.likelion.community.model.MediaDescriptorDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

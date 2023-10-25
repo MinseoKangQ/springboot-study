@@ -1,7 +1,7 @@
 package com.likelion.community.controller;
 
 import com.likelion.community.model.BoardDto;
-import com.likelion.community.repository.BoardRepository;
+import com.likelion.community.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,38 +15,38 @@ import java.util.Collection;
 public class BoardController {
 
     private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-    private final BoardRepository boardRepository;
+    private final BoardService boardService;
 
-    public BoardController(BoardRepository boardRepository){
-        this.boardRepository = boardRepository;
+    public BoardController(BoardService boardService){
+        this.boardService = boardService;
     }
 
     @PostMapping
     public ResponseEntity<BoardDto> createBoard(@RequestBody BoardDto dto) {
-        return ResponseEntity.ok(boardRepository.create(dto));
+        return ResponseEntity.ok(boardService.create(dto));
     }
 
     @GetMapping("{id}")
     public ResponseEntity<BoardDto> readBoard(@PathVariable("id") Long id) {
-        BoardDto dto = boardRepository.read(id);
+        BoardDto dto = boardService.read(id);
         if(dto == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(dto);
     }
 
     @GetMapping
     public ResponseEntity<Collection<BoardDto>> readBoardAll() {
-        return ResponseEntity.ok(this.boardRepository.readAll());
+        return ResponseEntity.ok(this.boardService.readAll());
     }
 
     @PutMapping("{id}")
     public ResponseEntity<?> updateBoard(@PathVariable("id") Long id, @RequestBody BoardDto dto) {
-        if(!boardRepository.update(id, dto)) return ResponseEntity.notFound().build();
+        if(!boardService.update(id, dto)) return ResponseEntity.notFound().build();
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteBoard(@PathVariable("id") Long id) {
-        if(!boardRepository.delete(id)) return ResponseEntity.notFound().build();
+        if(!boardService.delete(id)) return ResponseEntity.notFound().build();
         return ResponseEntity.noContent().build();
     }
 
