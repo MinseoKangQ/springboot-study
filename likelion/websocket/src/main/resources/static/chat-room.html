@@ -22,7 +22,7 @@
 
         function connect() {
             getRoomName();
-            let socket = new SockJS('/ws/chat');
+            let socket = new SockJS('/ws/chat'); // 최초 연결 지점 /ws/chat
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function(frame) {
                 console.log('Connected: ' + frame);
@@ -32,6 +32,7 @@
             });
         }
 
+        // /send-endpoint/ws/chat 을 통해 메세지를 보냄
         function sendMessage() {
             let message = document.getElementById('message').value;
             stompClient.send("/send-endpoint/ws/chat", {},
