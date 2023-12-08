@@ -1,5 +1,8 @@
 package com.MinseoKangQ.producer.service;
 
+import com.MinseoKangQ.producer.model.JobRequest;
+import com.google.gson.Gson;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,30 +17,24 @@ public class ProducerService {
 
     private final RabbitTemplate rabbitTemplate;
     private final Queue rabbitQueue;
+    private final Gson gson;
 
     public ProducerService(
             @Autowired RabbitTemplate rabbitTemplate,
-            @Autowired Queue rabbitQueue
+            @Autowired Queue rabbitQueue,
+            @Autowired Gson gson
     ) {
         this.rabbitTemplate = rabbitTemplate;
         this.rabbitQueue = rabbitQueue;
+        this.gson = gson;
     }
 
-    // 스레드가 꼬이는 상황을 방지하기 위해 두 개의 AtomicInteger 생성
-    AtomicInteger dots = new AtomicInteger(0);
-    AtomicInteger count = new AtomicInteger(0);
 
     // 메세지 보내는 메소드
-    public void send() {
-        StringBuilder builder = new StringBuilder("Hello");
-        if (dots.incrementAndGet() == 4) {
-            dots.set(1);
-        }
-        builder.append(".".repeat(dots.get()));
-        builder.append(count.incrementAndGet());
-        String message = builder.toString();
-
-        rabbitTemplate.convertAndSend(rabbitQueue.getName(), message);
-        logger.info("Sent message: {}", message);
+    public String send() {
+        JobRequest jobRequest = new JobRequest(UUID.randomUUID().toString());
+        rabbitTemplate.convertAndSend(rabbitQueue.getName(), gson.toJson(jobRequest));
+        logger.info("Sent Job: {}", jobRequest.getJobId());
+        return jobRequest.getJobId(); // 조회 시 key 필요
     }
 }
