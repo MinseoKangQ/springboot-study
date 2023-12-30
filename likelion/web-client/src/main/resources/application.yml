@@ -1,0 +1,15 @@
+ncp:
+  api:
+    access-key: jfpW1TizRxkeaAUMTPcd
+    secret-key: j4Sje40RRrOt1MkuRHIXYpXf98sor53xZTM1EOt1
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: health,info,loggers,shutdown
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
