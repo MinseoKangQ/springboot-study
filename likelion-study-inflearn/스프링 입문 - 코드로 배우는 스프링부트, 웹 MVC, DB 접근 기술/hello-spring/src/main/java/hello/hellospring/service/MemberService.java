@@ -23,7 +23,7 @@ public class MemberService {
         return member.getId();
     }
 
-    private List<Member> findMembers() {
+    public List<Member> findMembers() {
         return memberRepository.findAll();
     }
 
